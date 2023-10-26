@@ -1,0 +1,19 @@
+<nav class="navbar navbar-light bg-light justify-content-between">
+    <div>
+        <a routerLink="" class="navbar-brand" id="brand">Car Rental Services</a>
+        <a routerLink="dashboard/rental-agreements" *ngIf="isUserActive" class="navbar-brand" id="auth">Rental Agreements</a>
+        <a routerLink="admin/add-car" *ngIf="isAdmin()" class="navbar-brand" id="auth">Add Car</a>
+        <a routerLink="admin/return-requests" *ngIf="isAdmin()" class="navbar-brand" id="auth">Return Requests</a>
+      </div>
+      <div *ngIf="!isUserActive">
+        <a routerLink="auth/login" class="navbar-brand" id="auth">Login</a>
+        <a routerLink="auth/signup" class="navbar-brand" id="auth">SignUp</a>
+      </div>
+      <div *ngIf="isUserActive">
+          <a routerLink="" *ngIf="isUserActive" class="navbar-brand" id="auth">{{currentUser()}}</a>
+          <a (click)="logout()" class="navbar-brand" id="auth">Logout</a>
+          <a routerLink="dashboard/help" class="navbar-brand" id="auth">Help</a>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+ 

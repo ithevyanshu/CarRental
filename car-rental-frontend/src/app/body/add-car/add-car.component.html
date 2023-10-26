@@ -1,0 +1,42 @@
+<div class="form">
+    <h1>Add Car for Rental</h1>
+    <form [formGroup]="addCar" (ngSubmit)="onSubmit(addCar.invalid)">
+        <p [ngClass]="isCarAdded?'success':'warning'">{{displayMsg}}</p>
+        <div>
+            <div class="warning" *ngIf="Manufacturer.errors?.['required'] && Manufacturer.touched">*Manufacturer is Required</div>
+            <div class="warning" *ngIf="Manufacturer.errors?.['maxlength']">*Manufacturer Name is too Long</div>
+            <div class="warning" *ngIf="Manufacturer.errors?.['pattern']">*Only alphabectical character allowed</div>
+            <input 
+                type="text" 
+                placeholder="Manufacturer"
+                formControlName="manufacturer"
+            >
+        </div>
+        <div>
+            <div class="warning" *ngIf="Model.errors?.['required'] && Model.touched">*Model Name is Required</div>
+            <div class="warning" *ngIf="Model.errors?.['maxlength']">*Too long Name</div>
+            <input 
+            type="text" 
+            placeholder="Model"
+            formControlName="model" 
+            >
+        </div>
+        <div>
+            <div class="warning" *ngIf="Price.errors?.['required'] && Price.touched">*Price is Required</div>
+            <input 
+            type="number" 
+            placeholder="Price"
+            formControlName="price" 
+            >
+        </div>
+        <div>
+            <div class="warning" *ngIf="Image.errors?.['required'] && Image.touched">*Image Url is Required</div>
+            <input 
+            type="text" 
+            placeholder="ImageUrl"
+            formControlName="image" 
+            >
+        </div>
+        <button type="submit">Add Car</button>
+    </form>
+</div>

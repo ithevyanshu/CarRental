@@ -1,0 +1,113 @@
+<div class="form">
+  <form
+    [formGroup]="rentalAgreement"
+    (ngSubmit)="onSubmit(rentalAgreement.invalid)"
+  >
+    <p class="warning">{{ displayMsg }}</p>
+    <div>
+      <h1>Edit Rental Agreement</h1>
+
+      <div class="paragraph">
+        <p>1. THE PARTIES TO THIS AGREEMENT ARE:</p>
+        <p>1.1 THE OWNER: Car Rental Sevices</p>
+        <p>1.2 THE RENTER: {{ username.name }}</p>
+      </div>
+
+      <div class="paragraph">
+        <p>2. THE OBJECT OF THE RENTAL IS:</p>
+        <p>{{ car.maker }} {{ car.model }}</p>
+      </div>
+
+      <div class="paragraph">
+        <p>3. RENTAL PERIOD:</p>
+        <p>
+          The Owner agrees to rent the above-described vehicle to the Renter for
+          the following period:
+        </p>
+        <p>
+          3.1 Previous  Starting Date : {{ rental.startDate | date : "dd-MM-yyyy" }} 
+              New Starting Date : <input type="date" formControlName="startDate" />
+        </p>
+        <div *ngIf="rentalAgreement.get('startDate').hasError('dateInPast')">
+          <p class="warning">*Start date cannot be in the past</p>
+        </div>
+        <p>
+          3.2 Previous Ending Date : {{ rental.endDate | date : "dd-MM-yyyy" }} 
+              New Ending Date : <input type="date" formControlName="endDate" />
+        </p>
+        <div *ngIf="rentalAgreement.get('endDate').hasError('dateInPast')">
+          <p class="warning">*End date cannot be in the past</p>
+        </div>
+        <div *ngIf="rentalAgreement.hasError('endDateBeforeStartDate')">
+          <p class="warning">*End date must come after start date</p>
+        </div>
+        <div *ngIf="rentalAgreement.hasError('alreadyRented')">
+          <p class="warning">
+            *This rental period overlaps with an existing rental
+          </p>
+        </div>
+        <p>3.3 Total Rental Days : {{ getRentalDuration() }}</p>
+      </div>
+
+      <div class="paragraph">
+        <p>4. RENTAL RATE:</p>
+        <p>
+          4.1 The Renter hereby agrees to pay the owner at the rate of ₹
+          {{ car.price }} per day.
+        </p>
+        <p>4.2 All fuel used shall be paid for by the Renter.</p>
+      </div>
+
+      <div class="paragraph">
+        <p>5. QUALIFICATIONS:</p>
+        <p>
+          5.1 The Renter states that he / she is physically and legally
+          qualified to operate the above-described vehicle.
+        </p>
+      </div>
+
+      <div class="paragraph">
+        <p>6. EXCLUSIONS:</p>
+        <p>
+          6.1 The rented vehicle shall not be used to carry passengers or
+          property for hire.
+        </p>
+        <p>
+          6.2 The rented vehicle shall not be used to carry passengers other
+          than in the interior or cab of the vehicle.
+        </p>
+        <p>
+          6.3 The rented vehicle shall not be used to push, propel or tow
+          another vehicle, trailer or any other thing
+        </p>
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;without the written permission of
+          the Owner.
+        </p>
+        <p>
+          6.4 The rented vehicle shall not be used for any race or in any
+          competition.
+        </p>
+        <p>6.5 The rented vehicle shall not be used for any illegal purpose.</p>
+        <p>
+          6.6 The Renter shall not operate the vehicle in a negligent manner.
+        </p>
+      </div>
+
+      <div class="paragraph">
+        <p>7. JURISDICTION:</p>
+        <p>
+          7.1 The parties consent that this is a legal binding document in the
+          Republic of India.
+        </p>
+      </div>
+
+      <div class="paragraph">
+        <p>Signed on :</p>
+        <p>OWNER: Car Rental Service</p>
+        <p>RENTER: {{ username.name }}</p>
+      </div>
+    </div>
+    <button type="submit">Agree & Book</button>
+  </form>
+</div>

@@ -1,0 +1,12 @@
+<div class="car-details-box">
+  <img [src]="car.imageUrl">
+  <div class="car-details">
+    <p class="car-name">Car Name : {{ car.maker }} {{ car.model }} </p>
+    <p>Price : ₹{{ car.price }} per day</p>
+    <h6 *ngIf="this.rentals.length!=0">Not Available</h6>
+    <div *ngFor="let rental of rentals">
+      <p *ngIf="currentDate<rental.endDate && !rental.returnResp">From : {{ rental.startDate | date:'dd/MM/yyyy' }} To : {{ rental.endDate | date:'dd/MM/yyyy' }}</p>
+    </div>
+    <button *ngIf="isloggedIn" (click)="bookCar(id)">Book Now</button>
+  </div>
+</div>

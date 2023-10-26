@@ -1,0 +1,37 @@
+<div *ngIf="rentals" class="section">
+    <div *ngFor="let rental of rentals">
+      <div
+        class="flex-center car-description"
+        *ngIf="rental.returnReq === true && rental.returnResp === false"
+      >
+        <img
+          class="car-image"
+          src="{{ rental.carDetails.imageUrl }}"
+          alt="{{ rental.carDetails.maker }} {{ rental.carDetails.model }}"
+        />
+        <div class="flex-center car-details">
+          <a class="car-name" routerLink="../car-details/{{ rental.carId }}">
+            {{ rental.carDetails.maker }} {{ rental.carDetails.model }}
+          </a>
+          <div>
+            <p class="car-price">
+              Booked from
+              <span>{{ rental.startDate | date : "dd-MM-yyyy" }}</span> to
+              <span>{{ rental.endDate | date : "dd-MM-yyyy" }}</span>
+            </p>
+            <p class="car-price" *ngIf="isAdmin">
+              Booked by <span>{{ rental.user.name }}</span>
+            </p>
+            <p class="car-price">
+              Total Amount paid :
+              <span>₹{{ rental.rentalDuration * rental.carDetails.price }}</span>
+            </p>
+          </div>
+          <div class="car-actions" *ngIf="isAdmin">
+            <button (click)="returnCar(rental.id)">Accept</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,54 @@
+<div class="section">
+  <form [formGroup]="searchCar" (ngSubmit)="search(searchCar.value)">
+      <div class="flex-center">
+          <div class="select">
+              <input type="text" placeholder="Manufacturer" formControlName="maker">
+          </div>
+          <div class="select">
+              <input type="text" placeholder="Model" formControlName="model">
+          </div>
+          <div class="select">
+              <input type="number" placeholder="Min Price" formControlName="minPrice">
+          </div>
+          <div class="select">
+              <input type="number" placeholder="Max Price" formControlName="maxPrice">
+          </div>
+          <div class="search">
+              <button class="from-component flex-center">
+                  Apply
+              </button>
+          </div>
+      </div>
+  </form>
+</div>
+
+
+<div class="section">
+  <h4 *ngIf="isEmpty()">Item not exists</h4>
+  <div class="flex-center car-description" *ngFor="let car of customCar">
+    <div>
+      <img
+        class="car-image"
+        src="{{ car.imageUrl }}"
+        alt="{{ car.productName }}"
+      />
+    </div>
+    <div class="flex-center car-details">
+      <div>
+        <a class="car-name" routerLink="./car-details/{{ car.id }}">
+          {{ car.maker }} {{ car.model }}
+        </a>
+        <p class="car-price">
+          Starts from <span>₹{{ car.price }}</span>
+        </p>
+      </div>
+      <div class="car-actions">
+        <button *ngIf="!isAdmin() && isloggedIn" (click)="bookCar(car.id)">Book Now</button>
+        <div *ngIf="isAdmin()">
+          <button (click)="update(car.id)">Edit</button>
+          <button (click)="delete(car.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

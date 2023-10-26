@@ -1,0 +1,41 @@
+.section {
+  margin: 20px 10%;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+
+.car-description {
+  border: 1px solid aliceblue;
+  padding: 20px;
+  box-shadow: 0 0 5px #ccc;
+  margin-bottom: 20px;
+}
+
+.car-image {
+  width: 300px;
+}
+
+.car-details {
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.car-name{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.car-price span{
+    font-weight: bold;
+}
+
+.car-actions button{
+    border: 1px solid whitesmoke;
+    padding: 5px 10px;
+    font-size: 18px;
+    background-color:aliceblue;
+    font-weight: bold;
+}

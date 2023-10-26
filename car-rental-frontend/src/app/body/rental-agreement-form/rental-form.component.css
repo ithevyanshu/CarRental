@@ -1,0 +1,22 @@
+.form{
+    border: 1px solid black;
+    margin: 20px auto;
+    padding: 10px 25px;
+    width: fit-content;
+} 
+
+.paragraph{
+    margin-bottom:15px;
+}
+
+.paragraph p{
+    margin: 0;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: rgb(240, 240, 240);
+    padding: 10px;
+    font-weight: bold;
+}

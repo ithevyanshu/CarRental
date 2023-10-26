@@ -1,0 +1,46 @@
+<div *ngIf="rentals" class="section">
+  <div *ngFor="let rental of rentals">
+    <div
+      class="flex-center car-description"
+      *ngIf="userId === rental.userId || isAdmin"
+    >
+      <img
+        class="car-image"
+        src="{{ rental.carDetails.imageUrl }}"
+        alt="{{ rental.carDetails.maker }} {{ rental.carDetails.model }}"
+      />
+      <div class="flex-center car-details">
+        <a class="car-name" routerLink="../car-details/{{ rental.carId }}">
+          {{ rental.carDetails.maker }} {{ rental.carDetails.model }}
+        </a>
+        <div>
+          <p class="car-price">
+            Booked from
+            <span>{{ rental.startDate | date : "dd-MM-yyyy" }}</span> to
+            <span>{{ rental.endDate | date : "dd-MM-yyyy" }}</span>
+          </p>
+          <p class="car-price" *ngIf="isAdmin">
+            Booked by <span>{{ rental.user.name }}</span>
+          </p>
+          <p class="car-price">
+            Total Amount paid :
+            <span>₹{{ rental.rentalDuration * rental.carDetails.price }}</span>
+          </p>
+        </div>
+        <div class="car-actions" *ngIf="!isAdmin && !rental.returnReq">
+          <button (click)="returnCar(rental.id)">Return</button>
+        </div>
+        <div class="car-actions" *ngIf="!isAdmin && rental.returnReq && !rental.returnResp">
+          <button>Requested</button>
+        </div>
+        <div class="car-actions" *ngIf="!isAdmin && rental.returnReq && rental.returnResp">
+          <button>Approved</button>
+        </div>
+        <div class="car-actions" *ngIf="isAdmin">
+          <button (click)="updateAgreement(rental.id)">Edit</button>
+          <button (click)="deleteAgreement(rental.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

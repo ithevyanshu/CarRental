@@ -1,0 +1,45 @@
+<div class="form">
+    <h3>Signup</h3>
+    <h1>Car Rental</h1>
+    <form [formGroup]="register" (ngSubmit)="onSubmit(register.invalid)">
+        <p [ngClass]="isAccountCreated?'sucess':'warning'">{{displayMsg}}</p>
+        <div>
+            <input 
+                type="text" 
+                placeholder="Full Name"
+                formControlName="name"
+            >
+            <div class="warning" *ngIf="Name.errors?.['required'] && Name.touched">*Full Name is Required</div>
+            <div class="warning" *ngIf="Name.errors?.['maxlength']">*Full Name is too Long</div>
+            <div class="warning" *ngIf="Name.errors?.['pattern']">*Only alphabets allowed</div>
+        </div>
+        <div>
+            <input 
+            type="email" 
+            formControlName="email" 
+            placeholder="Email"
+            >
+            <div class="warning" *ngIf="Email.errors?.['required'] && Email.touched">*Email is Required</div>
+            <div class="warning" *ngIf="Email.errors?.['email']">*Invalid email pattern</div>
+        </div>
+        <div>
+            <input 
+            type="password" 
+            formControlName="pass" 
+            placeholder="Password"
+            >
+            <div class="warning" *ngIf="Pass.errors?.['required'] && Pass.touched">*Password is Required</div>
+            <div class="warning" *ngIf="Pass.errors?.['minlength']">*Password length should be more than 8</div>
+            <div class="warning" *ngIf="Pass.errors?.['pattern']">*Min 1 special character, 1 number and 1 alphabet required</div>
+        </div>
+        <div>
+            <input 
+                type="password" 
+                formControlName="cpass" 
+                placeholder="Confirm Password"
+            ><br>
+            <div class="warning" [ngStyle]="{'display': repeatPass}">*Password don't match</div>
+        </div>
+        <button>Signup</button>
+    </form>
+</div>

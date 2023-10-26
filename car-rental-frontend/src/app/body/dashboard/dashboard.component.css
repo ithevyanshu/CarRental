@@ -1,0 +1,59 @@
+.section{
+    margin: 20px 10%;
+}
+
+.flex-center{
+    display: flex;
+    align-items: center;
+}
+
+.car-description{
+    border: 1px solid aliceblue;
+    padding: 20px;
+    box-shadow: 0 0 5px #ccc;
+    margin-bottom: 20px;
+}
+
+.car-image{
+    width: 300px;
+}
+
+.car-name{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.car-price span{
+    font-weight: bold;
+}
+
+.car-details{
+    margin: 0 30px ;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.car-actions button{
+    border: 1px solid whitesmoke;
+    padding: 5px 10px;
+    font-size: 18px;
+    background-color:aliceblue;
+    font-weight: bold;
+}
+
+.flex-center{
+    display: flex;
+    align-items: center;
+}
+
+form{
+    margin-bottom: 30px;
+}
+
+input{
+    border: 1px solid whitesmoke;
+    box-shadow: 0 0 5px #ccc;
+    padding: 5px 10px;
+    width: 90%;
+    outline: none;
+}

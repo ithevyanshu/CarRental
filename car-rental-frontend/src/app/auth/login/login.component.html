@@ -1,0 +1,27 @@
+<div class="form">
+    <h3>Login</h3>
+    <h1>Car Rental</h1>
+    <p [ngClass]="isLoggedIn?'sucess':'warning'">{{displayMsg}}</p>
+    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.invalid)">
+        <div>
+            <input 
+                type="email" 
+                name="email" 
+                placeholder="Email address"
+                formControlName="email"
+            >
+            <div class="warning" *ngIf="Email.errors?.['required'] && Email.touched">*Email is Required</div>
+            <div class="warning" *ngIf="Email.errors?.['email']">*Invalid valid email</div>
+        </div>
+        <div>
+            <input 
+            type="password" 
+            name="password" 
+            placeholder="Password"
+            formControlName="password"
+            >
+            <div class="warning" *ngIf="Password.errors?.['required'] && Password.touched">*Password is required</div>
+        </div>
+        <button>Login</button>
+    </form>
+</div>
